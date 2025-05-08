@@ -1,0 +1,185 @@
+Fazliddin
+Auth qismi uchun
+/api/register/	            POST	    Foydalanuvchi yaratish
+Request:{
+  "username": "john_doe",
+  "email": "john@example.com",
+  "password": "strongpassword123"
+}
+Response:{
+  "id": 1,
+  "username": "john_doe",
+  "email": "john@example.com"
+}
+/api/login/	                POST	    Token/JWT olish
+Request:{
+  "username": "john_doe",
+  "password": "strongpassword123"
+}
+Response:{
+  "access": "JWT_ACCESS_TOKEN",
+  "refresh": "JWT_REFRESH_TOKEN"
+}
+/api/profile/<username>/	GET	        Foydalanuvchi profilini olish
+Response:{
+  "username": "john_doe",
+  "bio": "Photographer",
+  "website": "https://johndoe.com",
+  "location": "Tashkent",
+  "is_private": false,
+  "image": "http://example.com/media/profile_pictures/john.jpg"
+}
+/api/profile/<username>/	PUT/PATCH	Profilni tahrirlash
+Request:{
+  "bio": "Updated bio",
+  "location": "Samarkand"
+}
+Response:{
+  "bio": "Updated bio",
+  "location": "Samarkand"
+}
+
+Maxmudjon
+Post API
+/api/posts/	                GET	        Barcha postlar ro‘yxati
+Response:{
+    "id": 1,
+    "user": "john_doe",
+    "caption": "Nature is beautiful",
+    "file": "http://example.com/media/posts/img1.jpg",
+    "post_type": "image",
+    "likes_count": 14,
+    "comments_count": 3,
+    "created_at": "2025-05-08T12:00:00Z"
+  }
+/api/posts/	                POST	    Yangi post yaratish
+Request:{
+  "caption": "My trip to the mountains",
+  "file": "data:image/jpeg;base64,...",  // yoki multipart form-data
+  "post_type": "image",
+  "tags": ["nature", "travel"],
+  "location": "Chimgan"
+}
+Response:{
+  "id": 2,
+  "caption": "My trip to the mountains",
+  "file": "http://example.com/media/posts/img2.jpg"
+}
+/api/posts/<id>/	        GET	        Bitta post tafsiloti
+Response:{
+  "id": 2,
+  "user": "john_doe",
+  "caption": "My trip to the mountains",
+  "file": "http://example.com/media/posts/img2.jpg",
+  "likes_count": 20,
+  "comments": [...],
+  "tags": ["nature", "travel"]
+}
+/api/posts/<id>/like/	    POST/DELETE	Like qo‘shish yoki olib tashlash
+Request:{ "detail": "Liked" }
+Response:{ "detail": "Unliked" }
+/api/posts/<id>/save/	    POST/DELETE	Save qilish yoki olib tashlash
+Response:{ "detail": "Saved" }  // POST
+{ "detail": "Unsaved" }  // DELETE
+/api/posts/<id>/comments/	GET/POST	Kommentlar ro‘yxati yoki yangi komment
+Response:[
+  {
+    "user": "alice",
+    "text": "Beautiful photo!",
+    "created_at": "2025-05-08T13:00:00Z"
+  }
+],
+Request:{ "text": "Nice view!" }
+Response:{ "user": "john_doe", "text": "Nice view!", "created_at": "..." }
+
+Shoxrux aka
+Story API
+/api/stories/	        GET	    Barcha foydalanuvchilar storylari
+Response:[
+  {
+    "user": "john_doe",
+    "file": "http://example.com/media/stories/story1.jpg",
+    "created_at": "2025-05-08T10:00:00Z",
+    "expires_at": "2025-05-09T10:00:00Z"
+  }
+]
+/api/stories/	        POST	Yangi story joylash
+Request:{
+  "file": "data:image/jpeg;base64,..."
+}
+Response:{ "detail": "Story uploaded" }
+/api/stories/<id>/	    GET	    Story tafsiloti va ko‘ruvchilar
+Response:{
+  "user": "john_doe",
+  "file": "http://example.com/media/stories/story1.jpg",
+  "viewers": ["alice", "bob"]
+}
+/api/stories/<id>/view/	POST	Story’ni ko‘rgan deb qayd qilish
+Response:{ "detail": "View recorded" }
+
+Mirahmat
+Follow API
+/api/follow/<username>/	    POST/DELETE	Follow yoki unfollow qilish
+Response:{ "detail": "Followed" } POST
+Response:{ "detail": "Unfollowed" } DELETE
+/api/<username>/followers/	GET	        Kimlar uni follow qilmoqda
+Response:["alice", "bob", "charlie"]
+/api/<username>/following/	GET	        U kimlarni follow qilmoqda
+Response:["elon", "nasa", "openai"]
+
+Direct Chat API
+/api/messages/<username>/	GET/POST	Xabarlar olish yoki yuborish
+Response:[
+  {
+    "sender": "me",
+    "receiver": "alice",
+    "text": "Hi!",
+    "file": null,
+    "created_at": "2025-05-08T12:30:00Z"
+  }
+]
+/api/chats/	                GET	        Har bir kontakt bo‘yicha chatlar ro‘yxati
+Request:{
+  "text": "Hello!",
+  "file": null
+}
+Response:[
+  {
+    "username": "alice",
+    "last_message": "Hello!",
+    "unread_count": 2
+  }
+]
+
+Izzatillo
+Notification API
+/api/notifications/	            GET	    Bildirishnomalar ro‘yxati
+Response:[
+  {
+    "id": 1,
+    "sender": "alice",
+    "type": "Like",
+    "post_id": 5,
+    "is_read": false,
+    "created_at": "2025-05-08T12:00:00Z"
+  }
+]
+/api/notifications/<id>/read/	POST	O‘qilgan deb belgilash
+Response:{ "detail": "Marked as read" }
+
+Tag API
+/api/tags/	            GET	Barcha taglar
+Response:[
+  { "name": "nature", "post_count": 12 },
+  { "name": "travel", "post_count": 5 }
+]
+/api/tags/<tag>/posts/	GET	Ushbu tagga tegishli postlar
+Response:[
+  {
+    "id": 1,
+    "caption": "Awesome sunset!",
+    "file": "http://example.com/media/posts/img1.jpg"
+  }
+]
+
+
