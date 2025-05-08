@@ -6,6 +6,5 @@ Makefile
 static/
 media/
 .env/
-.venv
-.idea
+
 
