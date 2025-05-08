@@ -1,0 +1,43 @@
+Fazliddin
+Auth qismi uchun
+/api/register/	            POST	    Foydalanuvchi yaratish
+/api/login/	                POST	    Token/JWT olish
+/api/profile/<username>/	GET	        Foydalanuvchi profilini olish
+/api/profile/<username>/	PUT/PATCH	Profilni tahrirlash
+
+Maxmudjon
+Post API
+/api/posts/	                GET	        Barcha postlar ro‘yxati
+/api/posts/	                POST	    Yangi post yaratish
+/api/posts/<id>/	        GET	        Bitta post tafsiloti
+/api/posts/<id>/like/	    POST/DELETE	Like qo‘shish yoki olib tashlash
+/api/posts/<id>/save/	    POST/DELETE	Save qilish yoki olib tashlash
+/api/posts/<id>/comments/	GET/POST	Kommentlar ro‘yxati yoki yangi komment
+
+Shoxrux aka
+Story API
+/api/stories/	        GET	    Barcha foydalanuvchilar storylari
+/api/stories/	        POST	Yangi story joylash
+/api/stories/<id>/	    GET	    Story tafsiloti va ko‘ruvchilar
+/api/stories/<id>/view/	POST	Story’ni ko‘rgan deb qayd qilish
+
+Mirahmat
+Follow API
+/api/follow/<username>/	    POST/DELETE	Follow yoki unfollow qilish
+/api/<username>/followers/	GET	        Kimlar uni follow qilmoqda
+/api/<username>/following/	GET	        U kimlarni follow qilmoqda
+
+Direct Chat API
+/api/messages/<username>/	GET/POST	Xabarlar olish yoki yuborish
+/api/chats/	                GET	        Har bir kontakt bo‘yicha chatlar ro‘yxati
+
+Izzatillo
+Notification API
+/api/notifications/	            GET	    Bildirishnomalar ro‘yxati
+/api/notifications/<id>/read/	POST	O‘qilgan deb belgilash
+
+Tag API
+/api/tags/	            GET	Barcha taglar
+/api/tags/<tag>/posts/	GET	Ushbu tagga tegishli postlar
+
+
