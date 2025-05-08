@@ -547,6 +547,7 @@ from django.db import models
 from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
+from django.db.models import ForeignKey, CASCADE
 from django.urls import reverse
 from datetime import timedelta
 
@@ -587,7 +588,7 @@ class Post(models.Model):
     post_type = models.CharField(max_length=10, choices=POST_TYPES, default='image')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    tags = models.ManyToManyField('Tag', related_name='posts', blank=True)
+    tags = ForeignKey('apps.Tag', CASCADE   )
     location = models.CharField(max_length=100, blank=True, null=True)
 
     def __str__(self):

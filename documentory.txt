@@ -173,6 +173,7 @@ Response:[
   { "name": "nature", "post_count": 12 },
   { "name": "travel", "post_count": 5 }
 ]
+
 /api/tags/<tag>/posts/	GET	Ushbu tagga tegishli postlar
 Response:[
   {
