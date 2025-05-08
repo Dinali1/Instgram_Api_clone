@@ -1,8 +1,11 @@
-.venv
-.idea
+.idea/
+.venv/
 app/migrations/*
 db.sqlite3
 Makefile
 static/
 media/
 .env/
+.venv
+.idea
+
