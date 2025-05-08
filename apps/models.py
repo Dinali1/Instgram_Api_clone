@@ -547,13 +547,14 @@ from django.db import models
 from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
+from django.db.models import Model
 from django.urls import reverse
 from datetime import timedelta
 
 from django.utils import timezone
 
 
-class Profile(models.Model):
+class Profile(Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     image = models.ImageField(upload_to='profile_pictures', default='default.jpg')
     bio = models.CharField(max_length=160, blank=True, null=True)
