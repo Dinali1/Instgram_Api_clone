@@ -11,6 +11,9 @@ Response:{
   "username": "john_doe",
   "email": "john@example.com"
 }
+
+
+==========================================================================
 /api/login/	                POST	    Token/JWT olish
 Request:{
   "username": "john_doe",
@@ -20,6 +23,8 @@ Response:{
   "access": "JWT_ACCESS_TOKEN",
   "refresh": "JWT_REFRESH_TOKEN"
 }
+
+====================================================================
 /api/profile/<username>/	GET	        Foydalanuvchi profilini olish
 Response:{
   "username": "john_doe",
@@ -29,6 +34,7 @@ Response:{
   "is_private": false,
   "image": "http://example.com/media/profile_pictures/john.jpg"
 }
+===============================================================
 /api/profile/<username>/	PUT/PATCH	Profilni tahrirlash
 Request:{
   "bio": "Updated bio",
@@ -38,6 +44,9 @@ Response:{
   "bio": "Updated bio",
   "location": "Samarkand"
 }
+
+
+
 
 Maxmudjon
 Post API
@@ -52,6 +61,7 @@ Response:{
     "comments_count": 3,
     "created_at": "2025-05-08T12:00:00Z"
   }
+  =============================================================
 /api/posts/	                POST	    Yangi post yaratish
 Request:{
   "caption": "My trip to the mountains",
@@ -65,6 +75,7 @@ Response:{
   "caption": "My trip to the mountains",
   "file": "http://example.com/media/posts/img2.jpg"
 }
+==============================================================
 /api/posts/<id>/	        GET	        Bitta post tafsiloti
 Response:{
   "id": 2,
@@ -75,12 +86,15 @@ Response:{
   "comments": [...],
   "tags": ["nature", "travel"]
 }
+==========================================
 /api/posts/<id>/like/	    POST/DELETE	Like qo‘shish yoki olib tashlash
 Request:{ "detail": "Liked" }
 Response:{ "detail": "Unliked" }
+===========================================
 /api/posts/<id>/save/	    POST/DELETE	Save qilish yoki olib tashlash
 Response:{ "detail": "Saved" }  // POST
 { "detail": "Unsaved" }  // DELETE
+================================================
 /api/posts/<id>/comments/	GET/POST	Kommentlar ro‘yxati yoki yangi komment
 Response:[
   {
@@ -91,6 +105,10 @@ Response:[
 ],
 Request:{ "text": "Nice view!" }
 Response:{ "user": "john_doe", "text": "Nice view!", "created_at": "..." }
+==================================================
+
+
+
 
 Shoxrux aka
 Story API
@@ -139,7 +157,7 @@ Response:[
   }
 ]
 /api/chats/	                GET	        Har bir kontakt bo‘yicha chatlar ro‘yxati
-Request:{
+Response:{
   "text": "Hello!",
   "file": null
 }

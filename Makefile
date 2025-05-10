@@ -1,6 +1,6 @@
 mig:
-	pyhton3 manage.py makemigrations
-	pyhton3 manage.py migrate
+	python manage.py makemigrations
+	python manage.py migrate
 
 super:
 	python3 manage.py createsuperuser
