@@ -1,7 +1,9 @@
+from django.db import models
+# Create your here.
 
-
-# from django.contrib.auth.import AbstractUser
-# from django.db import # from django.db.import Model, OneToOneField, BooleanField, CharField, EmailField, TextField, ImageField, \
+# from django.contrib.auth.models import AbstractUser
+# from django.db import models
+# from django.db.models import Model, OneToOneField, BooleanField, CharField, EmailField, TextField, ImageField, \
 #     ManyToManyField, CASCADE, ForeignKey, FileField, DateTimeField, PositiveIntegerField, GenericIPAddressField, \
 #     DecimalField, SET_NULL, URLField
 #
@@ -254,7 +256,7 @@
 #     def __str__(self):
 #         return f'{self.user.username} archived Post {self.post.id}'
 #
-# class Subscription(Model):
+# class Subscription(models.Model):
 #     user = ForeignKey('apps.User', on_delete=CASCADE, related_name='subscriptions')
 #     creator = ForeignKey('apps.User', on_delete=CASCADE, related_name='creators_subscribed')
 #     start_date = DateTimeField(auto_now_add=True)
@@ -264,7 +266,7 @@
 #     def __str__(self):
 #         return f'{self.user.username} subscribed to {self.creator.username}'
 #
-# class PostAnalytics(Model):
+# class PostAnalytics(models.Model):
 #     post = OneToOneField('apps.Post', on_delete=CASCADE, related_name='analytics')
 #     reach = PositiveIntegerField(default=0)
 #     likes = PositiveIntegerField(default=0)
@@ -276,7 +278,7 @@
 #         return f'Analytics for Post {self.post.id}'
 #
 #
-# class Reaction(Model):
+# class Reaction(models.Model):
 #     REACTION_CHOICES = [
 #         ('like', 'Like'),
 #         ('love', 'Love'),
@@ -297,7 +299,7 @@
 #     def __str__(self):
 #         return f'{self.user.username} reacted with {self.reaction_type} to Post {self.post.id}'
 #
-# class Badge(Model):
+# class Badge(models.Model):
 #     name = CharField(max_length=100)
 #     description = TextField()
 #     image = ImageField(upload_to='badges/', null=True, blank=True)
@@ -305,10 +307,10 @@
 #     def __str__(self):
 #         return self.name
 #
-# class UserBadge(Model):
+# class UserBadge(models.Model):
 #     user = ForeignKey('apps.User', on_delete=CASCADE, related_name='badges')
 #     badge = ForeignKey('apps.Badge', on_delete=CASCADE)
-#     awarded_at = DateTimeField(auto_now_add=True)
+#     awarded_at = models.DateTimeField(auto_now_add=True)
 #
 #     class Meta:
 #         unique_together = ('user', 'badge')
@@ -326,7 +328,7 @@
 #     def __str__(self):
 #         return f'Draft Post by {self.user.username}'
 #
-# class PostEditHistory(Model):
+# class PostEditHistory(models.Model):
 #     post = ForeignKey(Post, on_delete=CASCADE, related_name='edit_history')
 #     edited_by = ForeignKey(User, on_delete=CASCADE)
 #     previous_content = TextField()
@@ -338,7 +340,7 @@
 #
 #
 #
-# class PinnedPost(Model):
+# class PinnedPost(models.Model):
 #     user = ForeignKey(User, on_delete=CASCADE, related_name='pinned_posts')
 #     post = ForeignKey(Post, on_delete=CASCADE)
 #     pinned_at = DateTimeField(auto_now_add=True)
@@ -350,7 +352,7 @@
 #         return f'{self.post.id} pinned by {self.user.username}'
 #
 #
-# class Product(Model):
+# class Product(models.Model):
 #     name = CharField(max_length=255)
 #     description = TextField()
 #     price = DecimalField(max_digits=10, decimal_places=2)
@@ -368,7 +370,7 @@
 #         return f'{self.product.name} tagged in Post {self.post.id}'
 #
 #
-# class Event(Model):
+# class Event(models.Model):
 #     creator = ForeignKey(User, on_delete=CASCADE)
 #     title = CharField(max_length=255)
 #     description = TextField()
@@ -422,8 +424,8 @@
 #         return f'Conversation {self.id}'
 #
 # class Messages(Model):
-#     conversation = ForeignKey(Conversation, on_delete=CASCADE, related_name='messages')
-#     sender = ForeignKey(User, on_delete=CASCADE)
+#     conversation = models.ForeignKey(Conversation, on_delete=CASCADE, related_name='messages')
+#     sender = ForeignKey(User, on_delete=models.CASCADE)
 #     content = TextField()
 #     image = ImageField(upload_to='messages/', null=True, blank=True)
 #     created_at = DateTimeField(auto_now_add=True)
@@ -501,41 +503,41 @@
 #
 #
 #
-# class AdCampaign(Model):
-#     advertiser = ForeignKey(User, on_delete=CASCADE)
-#     name = CharField(max_length=255)
-#     budget = DecimalField(max_digits=10, decimal_places=2)
-#     start_date = DateField()
-#     end_date = DateField()
-#     active = BooleanField(default=True)
+# class AdCampaign(models.Model):
+#     advertiser = models.ForeignKey(User, on_delete=models.CASCADE)
+#     name = models.CharField(max_length=255)
+#     budget = models.DecimalField(max_digits=10, decimal_places=2)
+#     start_date = models.DateField()
+#     end_date = models.DateField()
+#     active = models.BooleanField(default=True)
 #
 #     def __str__(self):
 #         return self.name
 #
-# class SponsoredPost(Model):
-#     campaign = ForeignKey(AdCampaign, on_delete=CASCADE)
-#     post = ForeignKey('Post', on_delete=CASCADE)
-#     promoted_at = DateTimeField(auto_now_add=True)
+# class SponsoredPost(models.Model):
+#     campaign = models.ForeignKey(AdCampaign, on_delete=models.CASCADE)
+#     post = models.ForeignKey('Post', on_delete=models.CASCADE)
+#     promoted_at = models.DateTimeField(auto_now_add=True)
 #
 #     def __str__(self):
 #         return f'Sponsored {self.post.id} in {self.campaign.name}'
 #
-# class UserDeviceLog(Model):
-#     user = ForeignKey(User, on_delete=CASCADE)
-#     ip_address = GenericIPAddressField()
-#     user_agent = TextField()
-#     location = CharField(max_length=255, blank=True, null=True)
-#     login_time = DateTimeField(auto_now_add=True)
+# class UserDeviceLog(models.Model):
+#     user = models.ForeignKey(User, on_delete=models.CASCADE)
+#     ip_address = models.GenericIPAddressField()
+#     user_agent = models.TextField()
+#     location = models.CharField(max_length=255, blank=True, null=True)
+#     login_time = models.DateTimeField(auto_now_add=True)
 #
 #     def __str__(self):
 #         return f'{self.user.username} - {self.ip_address}'
 #
-# class ContentModeration(Model):
-#     post = ForeignKey('Post', on_delete=CASCADE)
-#     flagged = BooleanField(default=False)
-#     reason = CharField(max_length=255, null=True, blank=True)
-#     confidence = FloatField(default=0.0)
-#     reviewed = BooleanField(default=False)
+# class ContentModeration(models.Model):
+#     post = models.ForeignKey('Post', on_delete=models.CASCADE)
+#     flagged = models.BooleanField(default=False)
+#     reason = models.CharField(max_length=255, null=True, blank=True)
+#     confidence = models.FloatField(default=0.0)
+#     reviewed = models.BooleanField(default=False)
 #
 #     def __str__(self):
 #         return f'Post {self.post.id} - Flagged: {self.flagged}'
@@ -553,14 +555,14 @@ from datetime import timedelta
 from django.utils import timezone
 
 
-class Profile(Model):
-    user = OneToOneField(User, on_delete=CASCADE, related_name='profile')
-    image = ImageField(upload_to='profile_pictures', default='default.jpg')
-    bio = CharField(max_length=160, blank=True, null=True)
-    website = URLField(max_length=255, blank=True, null=True)
-    location = CharField(max_length=100, blank=True, null=True)
-    is_private = BooleanField(default=False)
-    created_at = DateTimeField(auto_now_add=True)
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    image = models.ImageField(upload_to='profile_pictures', default='default.jpg')
+    bio = models.CharField(max_length=160, blank=True, null=True)
+    website = models.URLField(max_length=255, blank=True, null=True)
+    location = models.CharField(max_length=100, blank=True, null=True)
+    is_private = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.user.username}'s Profile"
