@@ -1,0 +1,9 @@
+[
+  {
+    "models" : "apps.comments",
+    "pk" : 1,
+    "fields" : {
+      "text" : "football is always claimed common type of sport"
+    }
+  }
+]

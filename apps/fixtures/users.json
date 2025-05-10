@@ -1,0 +1,57 @@
+[
+  {
+    "model": "apps.user",
+    "pk": 1,
+    "fields" : {
+      "first_name" : "Johny",
+      "last_name" : "William",
+      "username" : "Adam",
+      "password" : "abcd123",
+      "email" : "Adamjohn@gmail.com"
+    }
+  },
+    {
+    "model": "apps.user",
+    "pk": 2,
+    "fields" : {
+      "first_name" : "Tommy",
+      "last_name" : "Jack",
+      "username" : "Tom",
+      "password" : "1235kl",
+      "email" : "Jack@gmail.com"
+    }
+  },
+    {
+    "model": "apps.user",
+    "pk": 3,
+    "fields" : {
+      "first_name" : "Terry",
+      "last_name" : "James",
+      "username" : "Tom",
+      "password" : "bvvb123",
+      "email" : "James@gmail.com"
+    }
+  },
+    {
+    "model": "apps.user",
+    "pk": 4,
+    "fields" : {
+      "first_name" : "Mark",
+      "last_name" : "Noble",
+      "username" : "Mike",
+      "password" : "jkl345",
+      "email" : "Mark@gmail.com"
+    }
+  },
+    {
+    "model": "apps.user",
+    "pk": 5,
+    "fields" : {
+      "first_name" : "Mount",
+      "last_name" : "Tell",
+      "username" : "Tell",
+      "password" : "mn3456",
+      "email" : "Mount@gmail.com"
+    }
+  }
+]

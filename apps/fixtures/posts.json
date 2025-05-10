@@ -1,0 +1,50 @@
+[
+  {
+    "models" : "apps.post",
+    "pk" : 1,
+    "fields" : {
+      "file " : "posts/car2.jpg",
+      "caption": "Commonly Popular",
+      "post_type" : "image",
+      "location" : "Duvbai Toyota show room",
+      "tags" : "Luxury Cars"
+    }
+  },
+
+    {
+    "models" : "apps.post",
+    "pk" : 2,
+    "fields" : {
+      "file " : "posts/Blue_Tshirt.jpg",
+      "caption": "smart T-shirt",
+      "post_type" : "image",
+      "location" : "Sergeli",
+      "tags" : "men's clothes"
+    }
+  },
+
+   {
+    "models" : "apps.post",
+    "pk" : 3,
+    "fields" : {
+      "file " : "posts/melon1.jpg",
+      "caption": "Fresh nature",
+      "post_type" : "image",
+      "location" : "Chorsu",
+      "tags" : "Gardening"
+    }
+  },
+   {
+    "models" : "apps.post",
+    "pk" : 4,
+    "fields" : {
+      "file " : "posts/ball1.jpeg",
+      "caption": "Lovely playing football",
+      "post_type" : "image",
+      "location" : "Everywhere",
+      "tags" : "Football"
+    }
+  }
+
+
+]
