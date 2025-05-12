@@ -1,10 +1,13 @@
 from drf_spectacular.utils import extend_schema
+from rest_framework import status
 from rest_framework.generics import ListAPIView, get_object_or_404
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.viewsets import ModelViewSet
+
 from apps.models import Notification, Tag, Post
-from apps.serializer import NotificationSerializer, TagsSerializer
+from apps.serializer import NotificationSerializer, TagsSerializer, NotificationReadSerializer
 
 
 @extend_schema(tags=['Izzat'])
@@ -24,11 +27,10 @@ class TagsListView(ListAPIView):
 
 
 @extend_schema(tags=['Izzat'])
-class NotificationMarkReadView(APIView):
-    permission_classes = [IsAuthenticated]
-
-    def post(self, request, id):
-        notification = get_object_or_404(Notification, id=id, user=request.user)
-        notification.is_read = True
-        notification.save(update_fields=['is_read'])
-        return Response({"detail": "Marked as read"})
+class NotificationViewSet(APIView):
+    def get(self, request, id):
+        notification = get_object_or_404(Notification, pk=id)
+        if notification.is_read:
+            return Response({"detail": "Marked as read"}, status=status.HTTP_200_OK)
+        else:
+            return Response({"detail": "Notification not read"}, status=status.HTTP_200_OK)

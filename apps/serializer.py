@@ -1,3 +1,4 @@
+from rest_framework.fields import SerializerMethodField
 from rest_framework.serializers import ModelSerializer
 
 from apps.models import Notification, Tag, Post
@@ -15,43 +16,12 @@ class TagsSerializer(ModelSerializer):
         fields = 'caption', 'file'
 
 
+class NotificationReadSerializer(ModelSerializer):
+    is_read_status = SerializerMethodField()
 
+    class Meta:
+        model = Notification
+        fields = ['is_read', 'is_read_status']
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    def get_is_read_status(self, obj):
+        return "Mardek is read" if obj.is_read else "Notification not read"
