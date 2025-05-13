@@ -1,7 +1,7 @@
 from django.urls import path
 from rest_framework_simplejwt.views import TokenRefreshView, TokenObtainPairView
-
 from apps.views import NotificationListView, TagsListView, NotificationViewSet
+
 
 urlpatterns = [
     path('user/notification', NotificationListView.as_view(), name='get_notification'),
