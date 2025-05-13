@@ -28,6 +28,6 @@ class NotificationViewSet(APIView):
     def get(self, request, id):
         notification = get_object_or_404(Notification, pk=id)
         if notification.is_read:
-            return Response({"detail": "Marked as read"}, status=status.HTTP_200_OK)
+            return Response({"detail": "Marked as read"})
         else:
-            return Response({"detail": "Notification not read"}, status=status.HTTP_200_OK)
+            return Response({"detail": "Notification not read"})
