@@ -13,3 +13,5 @@ data:
 	pyhton3 manage.py loaddata posts.json
 	pyhton3 manage.py loaddata comments.json
 
+stub:
+	pip3 install django-stubs

@@ -14,6 +14,7 @@ from .models import Post, Like, SavedPost
 
 from apps.models import Profile
 from apps.serializer import RegisterSerializer, ProfileSerializer
+from .serializers import CommentSerializer, PostSerializer
 
 
 @extend_schema(tags=['Fazliddin Register api', ])
