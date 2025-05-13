@@ -11,7 +11,7 @@ class NotificationSerializer(ModelSerializer):
 class TagsSerializer(ModelSerializer):
     class Meta:
         model = Post
-        fields = 'caption', 'file'
+        fields = 'id','caption', 'file'
 
 class NotificationReadSerializer(ModelSerializer):
     is_read_status = SerializerMethodField()
