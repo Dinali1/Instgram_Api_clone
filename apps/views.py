@@ -1,3 +1,32 @@
+from drf_spectacular.utils import extend_schema
+from rest_framework.generics import ListAPIView, CreateAPIView
+
+from apps.models import Story
+from apps.serializer import StorySerializer, CreateSerializer, GetUsersSerializer
+
+
+@extend_schema(tags=['Shohrux'])
+class AllStoriesApiView(ListAPIView):
+    queryset = Story.objects.all()
+    serializer_class = StorySerializer
+
+
+@extend_schema(tags=['Shohrux'])
+class CreateStoriesApiView(CreateAPIView):
+    queryset = Story.objects.all()
+    serializer_class = CreateSerializer
+
+
+@extend_schema(tags=['Shohrux'])
+class GetUsersStoriesAPIView(ListAPIView):
+    queryset = Story.objects.all()
+    serializer_class = GetUsersSerializer
+
+
+@extend_schema(tags=['Shohrux'])
+class ViewsUserAPIView(CreateAPIView):
+    queryset = Story.objects.all()
+    serializer_class = CreateSerializer
 from django.contrib.auth.models import User
 from django.shortcuts import render
 from drf_spectacular.utils import extend_schema
