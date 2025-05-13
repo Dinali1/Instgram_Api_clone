@@ -25,6 +25,7 @@ class TagsListView(ListAPIView):
 
 @extend_schema(tags=['Izzat'])
 class NotificationViewSet(APIView):
+
     def get(self, request, id):
         notification = get_object_or_404(Notification, pk=id)
         if notification.is_read:
