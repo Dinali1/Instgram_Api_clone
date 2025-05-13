@@ -12,7 +12,6 @@ class NotificationListView(ListAPIView):
     queryset = Notification.objects.all()
     serializer_class = NotificationSerializer
 
-
 @extend_schema(tags=['Izzat'])
 class TagsListView(ListAPIView):
     serializer_class = TagsSerializer
@@ -21,7 +20,6 @@ class TagsListView(ListAPIView):
         tag_name = self.kwargs['tag']
         tag = get_object_or_404(Tag, name=tag_name)
         return Post.objects.filter(tags=tag).order_by('-created_at')
-
 
 @extend_schema(tags=['Izzat'])
 class NotificationViewSet(APIView):
