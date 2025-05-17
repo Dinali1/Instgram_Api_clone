@@ -4,6 +4,9 @@ from rest_framework.fields import CharField
 from rest_framework.serializers import ModelSerializer
 from apps.models import Profile
 from apps.models import Story
+from rest_framework import serializers
+from apps.models import Follow
+from apps.models import Message
 
 
 class StorySerializer(ModelSerializer):
@@ -44,3 +47,27 @@ class ProfileSerializer(ModelSerializer):
     class Meta:
         model = Profile
         fields = ['user', 'bio', 'is_private', 'image']
+
+
+class FollowSerializer(serializers.ModelSerializer):
+    follower = serializers.StringRelatedField()
+    following = serializers.StringRelatedField()
+
+    class Meta:
+        model = Follow
+        fields = '__all__'
+
+
+class MessageSerializer(serializers.ModelSerializer):
+    sender = serializers.StringRelatedField()
+    receiver = serializers.StringRelatedField()
+
+    class Meta:
+        model = Message
+        fields = '__all__'
+
+class MessageCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Message
+        fields = ['text', 'file']
+

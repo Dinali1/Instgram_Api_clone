@@ -169,6 +169,11 @@ Response:[
   }
 ]
 
+========================================================================================================================
+
+
+
+
 Izzatillo
 Notification API
 /api/notifications/	            GET	    Bildirishnomalar ro‘yxati

@@ -10,6 +10,8 @@ from apps.views import RegisterView, ProfileView, ProfileUpdateView, PostViewSet
 
 from apps.views import AllStoriesApiView, CreateStoriesApiView, GetUsersStoriesAPIView, ViewsUserAPIView
 
+from .views import FollowUnfollowAPIView, followers_list, following_list
+from .views import MessageListCreateView, ChatListView
 urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
@@ -26,4 +28,17 @@ urlpatterns += [
     path('api/create/stories', CreateStoriesApiView.as_view(), name='api_create_stories'),
     path('api/stories/<int:pk>', GetUsersStoriesAPIView.as_view(), name='api_stories_pk'),
     path('view/stories/<int:pk>', ViewsUserAPIView.as_view(), name='api_stories_view'),
+]
+
+# Mirahmad
+urlpatterns += [
+    path('api/follow/<str:username>/', FollowUnfollowAPIView.as_view(), name='follow'),
+    path('api/<str:username>/followers/', followers_list, name='followers_list'),
+    path('api/<str:username>/following/', following_list, name='following_list'),
+]
+
+
+urlpatterns += [
+    path('api/messages/<str:username>/', MessageListCreateView.as_view(), name='message_list_create'),
+    path('api/chats/', ChatListView.as_view(), name='chat_list'),
 ]
