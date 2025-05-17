@@ -1,3 +1,6 @@
+from pyexpat.errors import messages
+
+from django_filters.rest_framework import DjangoFilterBackend
 from drf_spectacular.utils import extend_schema
 from rest_framework.generics import ListAPIView, CreateAPIView
 
@@ -106,13 +109,13 @@ class PostViewSet(viewsets.ModelViewSet):
         like, created = Like.objects.get_or_create(user=request.user, post=post)
         if request.method == 'POST':
             if created:
-                return Response({'detail': 'Liked'}, status=status.HTTP_201_CREATED)
+                    return Response({'detail': 'Liked'}, status=status.HTTP_201_CREATED)
             else:
                 return Response({'detail': 'Already liked'}, status=status.HTTP_200_OK)
         elif request.method == 'DELETE':
             like.delete()
             return Response({'detail': 'Unliked'}, status=status.HTTP_204_NO_CONTENT)
-
+        return Response({'detail': 'Not allowed'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
     @action(detail=True, methods=['post', 'delete'])
     def save(self, request, pk=None):
         post = self.get_object()
@@ -125,6 +128,7 @@ class PostViewSet(viewsets.ModelViewSet):
         elif request.method == 'DELETE':
             saved.delete()
             return Response({'detail': 'Unsaved'}, status=status.HTTP_204_NO_CONTENT)
+        return Response({'detail': 'Not allowed'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
     @action(detail=True, methods=['get', 'post'])
     def comments(self, request, pk=None):
@@ -139,4 +143,5 @@ class PostViewSet(viewsets.ModelViewSet):
                 serializer.save(user=request.user, post=post)
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response({'detail': 'Not allowed'}, status=status.HTTP_404_NOT_FOUND)
 

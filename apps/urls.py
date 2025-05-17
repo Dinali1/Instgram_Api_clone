@@ -1,12 +1,12 @@
 from django.urls import path, include
 from rest_framework_simplejwt.views import TokenRefreshView, TokenObtainPairView
 from rest_framework.routers import DefaultRouter
-from apps.views import  PostViewSet
+from apps.views import *
 
 router = DefaultRouter()
 router.register(r'posts', PostViewSet, basename='post')
 
-from apps.views import RegisterView, ProfileView, ProfileUpdateView
+from apps.views import RegisterView, ProfileView, ProfileUpdateView, PostViewSet
 
 from apps.views import AllStoriesApiView, CreateStoriesApiView, GetUsersStoriesAPIView, ViewsUserAPIView
 
