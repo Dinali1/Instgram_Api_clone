@@ -23,7 +23,11 @@ from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from .models import Post, Like, SavedPost
-
+from django.contrib.auth.models import User
+from django.shortcuts import render
+from drf_spectacular.utils import extend_schema
+from rest_framework.generics import CreateAPIView, RetrieveAPIView, RetrieveUpdateAPIView
+# Create your views here.
 from apps.models import Profile
 from apps.serializer import RegisterSerializer, ProfileSerializer
 from .serializers import CommentSerializer, PostSerializer
@@ -51,11 +55,7 @@ class GetUsersStoriesAPIView(ListAPIView):
 class ViewsUserAPIView(CreateAPIView):
     queryset = Story.objects.all()
     serializer_class = CreateSerializer
-from django.contrib.auth.models import User
-from django.shortcuts import render
-from drf_spectacular.utils import extend_schema
-from rest_framework.generics import CreateAPIView, RetrieveAPIView, RetrieveUpdateAPIView
-# Create your views here.
+
 
 
 
