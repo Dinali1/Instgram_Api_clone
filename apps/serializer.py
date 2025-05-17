@@ -17,32 +17,36 @@ class StorySerializer(ModelSerializer):
         fields = '__all__'
 
 class NotificationSerializer(ModelSerializer):
-
-class CreateSerializer(ModelSerializer):
     class Meta:
         model = Notification
         fields = 'is_read', 'created_at', 'post_id', 'notification_type', 'sender'
+
+
+class CreateSerializer(ModelSerializer):
+    class Meta:
         model = Story
         fields = '__all__'
 
 class TagsSerializer(ModelSerializer):
+    class Meta:
+        model = Post
+        fields = 'id', 'caption', 'file'
 
 class GetUsersSerializer(ModelSerializer):
     class Meta:
-        model = Post
-        fields = 'id','caption', 'file'
         model = User
         fields = '__all__'
 
 class NotificationReadSerializer(ModelSerializer):
     is_read_status = SerializerMethodField()
+    class Meta:
+        model = Notification
+        fields = ['is_read', 'is_read_status']
 
 class RegisterSerializer(ModelSerializer):
     password = CharField(write_only=True, min_length=8)
 
     class Meta:
-        model = Notification
-        fields = ['is_read', 'is_read_status']
         model = Profile
         fields = ['id', 'user', 'password']
 
