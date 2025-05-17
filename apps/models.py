@@ -551,6 +551,7 @@ from django.contrib.auth.models import User
 from PIL import Image
 from django.db.models import Model, OneToOneField, CASCADE, ImageField, CharField, URLField, BooleanField, \
     DateTimeField, ForeignKey, FileField, TextField, ManyToManyField, PositiveIntegerField, IntegerField
+from django.db.models import ForeignKey, CASCADE
 from django.urls import reverse
 from datetime import timedelta
 
@@ -641,10 +642,10 @@ class Comment(Model):
     def __str__(self):
         return f"{self.user.username}: {self.text[:20]}..."
 
-class Follow(Model):
-    follower = ForeignKey(User, related_name='following', on_delete=CASCADE)
-    following = ForeignKey(User, related_name='followers', on_delete=CASCADE)
-    created_at = DateTimeField(auto_now_add=True)
+class Follow(models.Model):
+    follower = models.ForeignKey(User, related_name='following', on_delete=models.CASCADE)
+    following = models.ForeignKey(User, related_name='followers', on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         unique_together = ('follower', 'following')

@@ -5,6 +5,10 @@ from apps.views import *
 
 router = DefaultRouter()
 router.register(r'posts', PostViewSet, basename='post')
+from django.urls import path
+from rest_framework_simplejwt.views import TokenRefreshView, TokenObtainPairView
+from apps.views import NotificationListView, TagsListView, NotificationViewSet
+
 
 from apps.views import RegisterView, ProfileView, ProfileUpdateView, PostViewSet
 
@@ -13,6 +17,11 @@ from apps.views import AllStoriesApiView, CreateStoriesApiView, GetUsersStoriesA
 from .views import FollowUnfollowAPIView, followers_list, following_list
 from .views import MessageListCreateView, ChatListView
 urlpatterns = [
+    path('user/notification', NotificationListView.as_view(), name='get_notification'),
+    path('user/notification/<int:id>/read', NotificationViewSet.as_view(), name='notification-list'),
+    path('tags-list/<str:tag>/posts/', TagsListView.as_view(), name='tags-list'),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/register/', RegisterView.as_view(), name='api-register'),
@@ -22,6 +31,7 @@ urlpatterns = [
     path('api/', include(router.urls)),
 
 ]
+
 
 urlpatterns += [
     path('api/stories', AllStoriesApiView.as_view(), name='api_stories'),
